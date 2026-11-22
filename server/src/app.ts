@@ -8,6 +8,8 @@ import type {
 } from "express";
 import authRouter from "./modules/auth/auth.routes.js";
 import adminRouter from "./modules/admin/admin.routes.js";
+import reservationsRouter from "./modules/reservations/reservations.routes.js";
+import bookingsRouter from "./modules/bookings/bookings.routes.js";
 
 const app = express();
 
@@ -43,6 +45,10 @@ app.use("/api/v1/events", eventsRouter);
 app.use("/api/v1/auth", authRouter);
 
 app.use("/api/v1/admin", adminRouter);
+
+app.use("/api/v1/reservations", reservationsRouter);
+
+app.use("/api/v1/bookings", bookingsRouter);
 
 app.use((
   error: unknown,
