@@ -95,11 +95,22 @@ export async function publishEvent(eventId: string) {
 
 type UpdateDraftEvent = z.infer<typeof updateDraftEventSchema>;
 
+
 export async function listAdminEvents() {
   const result = await pool.query(`
     SELECT
-      id, title, category, city,
-      starts_at, status, created_at
+      id,
+      title,
+      description,
+      category,
+      city,
+      venue,
+      starts_at,
+      ends_at,
+      booking_opens_at,
+      booking_closes_at,
+      status,
+      created_at
     FROM events
     ORDER BY created_at DESC, id DESC
     LIMIT 100
@@ -107,6 +118,7 @@ export async function listAdminEvents() {
 
   return result.rows;
 }
+
 
 export async function updateDraftEvent(
   eventId: string,
